@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1024%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial%27 font-weight=%27700%27 font-size=%2728%27 fill=%27%23e1b45f%27 text-anchor=%27middle%27%3ERK%3C/text%3E%3C/svg%3E" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ravi Kumar · The Film</title>
+<meta name="description" content="A cinematic portfolio of Ravi Kumar, Group Vice President – Finance at Miles Education." />
+<meta property="og:image" content="assets/c0_lobby.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root { --gold:#d8b26a; --ink:#0b0b0d; --text:#f4efe6; --muted:#b9b2a6; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--ink); color:var(--text); font-family:Inter,system-ui,sans-serif; overflow-x:hidden; }
+a { color:inherit; }
+.grain { pointer-events:none; position:fixed; inset:-50%; z-index:50; opacity:.07; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); animation:grain 1.2s steps(6) infinite; }
+@keyframes grain { 0%{transform:translate(0,0)} 33%{transform:translate(-3%,2%)} 66%{transform:translate(2%,-3%)} 100%{transform:translate(0,0)} }
+.bars::before,.bars::after { content:""; position:fixed; left:0; right:0; height:7vh; background:#000; z-index:40; pointer-events:none; }
+.bars::before { top:0 } .bars::after { bottom:0 }
+header { position:fixed; top:0; left:0; right:0; z-index:45; height:7vh; display:flex; align-items:center; justify-content:space-between; padding:0 4vw; font-size:12px; letter-spacing:.22em; text-transform:uppercase; }
+.logo { font-family:'Cormorant Garamond',serif; font-size:24px; letter-spacing:.02em; text-transform:none; font-weight:600; }
+.logo b { color:var(--gold) }
+header nav { display:flex; gap:28px; align-items:center }
+header nav a { text-decoration:none; color:var(--muted); transition:color .3s } header nav a:hover { color:var(--text) }
+.snd { background:none; border:1px solid rgba(255,255,255,.25); color:var(--text); border-radius:20px; padding:6px 14px; font:inherit; font-size:11px; letter-spacing:.18em; cursor:pointer }
+.snd:hover { border-color:var(--gold) }
+footer.ctrl { position:fixed; bottom:0; left:0; right:0; height:7vh; z-index:45; display:flex; align-items:center; justify-content:space-between; padding:0 4vw; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted) }
+.dots { display:flex; gap:14px; align-items:center }
+.dots button { width:9px; height:9px; border-radius:50%; border:1px solid var(--muted); background:none; cursor:pointer; padding:0; transition:all .3s }
+.dots button.on { background:var(--gold); border-color:var(--gold); transform:scale(1.3) }
+.cap { position:fixed; left:50%; bottom:10vh; transform:translateX(-50%); z-index:46; max-width:min(860px,88vw); text-align:center; font-size:clamp(14px,1.5vw,18px); line-height:1.5; background:rgba(0,0,0,.55); padding:10px 18px; border-radius:6px; opacity:0; transition:opacity .4s; pointer-events:none }
+.cap.on { opacity:1 }
+/* Opening */
+#open { position:fixed; inset:0; z-index:60; background:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; text-align:center; transition:opacity 1.2s }
+#open.gone { opacity:0; pointer-events:none }
+#open .pre { font-size:12px; letter-spacing:.5em; text-transform:uppercase; color:var(--muted) }
+#open h1 { font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(48px,8vw,110px); letter-spacing:.04em }
+#open .play { border:1px solid var(--gold); color:var(--text); background:none; padding:14px 34px; border-radius:40px; font:inherit; letter-spacing:.3em; text-transform:uppercase; font-size:12px; cursor:pointer; transition:background .3s }
+#open .play:hover { background:rgba(216,178,106,.15) }
+#open .skip { color:var(--muted); font-size:12px; background:none; border:0; cursor:pointer; text-decoration:underline; font-family:inherit }
+/* Scenes */
+.scene { position:relative; height:180vh; }
+.stick { position:sticky; top:0; height:100vh; overflow:hidden; }
+.bg { position:absolute; inset:-4%; background-size:cover; background-position:center; transform:scale(1.12); will-change:transform; filter:saturate(1.05) contrast(1.05); }
+.shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.45) 42%,rgba(0,0,0,0) 70%), linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0) 40%); }
+.copy { position:absolute; left:6vw; bottom:16vh; max-width:min(560px,80vw); opacity:0; transform:translateY(30px); transition:opacity 1s, transform 1s }
+.scene.in .copy { opacity:1; transform:none }
+.chap { font-size:12px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:14px }
+.copy h2 { font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(40px,5.6vw,84px); line-height:1.02; margin-bottom:14px }
+.meta { font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:18px }
+.copy p { font-size:clamp(15px,1.25vw,18px); line-height:1.65; color:#e9e3d8; font-weight:300 }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px }
+.chips span { border:1px solid rgba(216,178,106,.45); color:#f1dcae; padding:6px 12px; border-radius:20px; font-size:12px; letter-spacing:.04em }
+.title-card .copy { bottom:auto; top:50%; transform:translateY(-40%); }
+.scene.title-card.in .copy { transform:translateY(-50%) }
+.title-card h2 { font-size:clamp(56px,9vw,140px); letter-spacing:.02em }
+.title-card .role { font-size:clamp(14px,1.4vw,18px); letter-spacing:.32em; text-transform:uppercase; color:#efe6d3; margin-top:8px }
+/* Credits */
+#credits { min-height:100vh; padding:16vh 6vw 14vh; background:radial-gradient(ellipse at top,#1b1610,#060606 60%); }
+#credits h3 { font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(36px,4.5vw,64px); margin-bottom:8px }
+#credits .sub { color:var(--muted); letter-spacing:.24em; text-transform:uppercase; font-size:12px; margin-bottom:48px }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:18px; margin-bottom:56px }
+.kpi { border-top:1px solid rgba(216,178,106,.5); padding-top:14px; cursor:pointer }
+.kpi b { display:block; font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; color:var(--gold) }
+.kpi span { font-size:13px; color:#ddd5c6 } .kpi small { display:block; color:var(--muted); font-size:12px; margin-top:4px }
+.cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:40px; margin-bottom:56px }
+.cols h4 { font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:14px }
+.cols li { list-style:none; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:15px; line-height:1.45 }
+.cols li small { display:block; color:var(--muted); font-size:12px; margin-top:2px }
+.cta { display:flex; flex-wrap:wrap; gap:12px }
+.cta a { text-decoration:none; padding:13px 24px; border-radius:30px; border:1px solid rgba(255,255,255,.3); font-size:13px; letter-spacing:.12em; text-transform:uppercase }
+.cta a.primary { background:var(--gold); color:#141005; border-color:var(--gold); font-weight:600 }
+.note { margin-top:40px; font-size:12px; color:#8d877d }
+@media (max-width:760px) { header nav a { display:none } .scene { height:150vh } .copy { left:6vw; right:6vw; bottom:14vh } .shade { background:linear-gradient(0deg,rgba(0,0,0,.88) 10%,rgba(0,0,0,.2) 70%) } }
+@media (prefers-reduced-motion:reduce) { .bg { transform:none !important } .grain { animation:none } }
+</style>
+</head>
+<body class="bars">
+<div class="grain" aria-hidden="true"></div>
+
+<div id="open" role="dialog" aria-label="Start the film">
+  <div class="pre">A film about finance leadership</div>
+  <h1>Ravi Kumar</h1>
+  <button class="play" id="play">▶ Play the film</button>
+  <button class="skip" id="silent">Watch without sound</button>
+</div>
+
+<header>
+  <div class="logo">RK<b>.</b></div>
+  <nav>
+    <a href="#s0">The Film</a><a href="#s1">Chapters</a><a href="#credits">Credits</a>
+    <button class="snd" id="snd" aria-pressed="false">Sound on</button>
+  </nav>
+</header>
+
+<main id="film"></main>
+
+<section id="credits">
+  <h3>The Story So Far</h3>
+  <div class="sub">Group Vice President – Finance · Miles Education · Chartered Accountant</div>
+  <div class="kpis" id="kpis"></div>
+  <div class="cols">
+    <div><h4>Roles</h4><ul id="roles"></ul></div>
+    <div><h4>Signature work</h4><ul id="work"></ul></div>
+    <div><h4>Education</h4><ul id="edu"></ul></div>
+  </div>
+  <div class="cta" id="cta"></div>
+  <p class="note">Images are AI-generated from Ravi’s photo. The voice is an AI clone of Ravi’s own voice, used with his permission.</p>
+</section>
+
+<footer class="ctrl">
+  <span id="scroll">Scroll to continue ↓</span>
+  <div class="dots" id="dots"></div>
+  <span id="counter">Opening</span>
+</footer>
+<div class="cap" id="cap" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="voice.js"></script>
+<script>
+const R = window.RAVI, S = R.say, E = R.experience;
+const scenes = [
+  { id:'s0', title:true, img:'c0_lobby', chap:'A finance leadership story', h:R.profile.name, role:R.profile.title + ' · ' + R.profile.employer, p:R.profile.summary, lines:['Hello, I’m Ravi Kumar. Welcome to my portfolio.', 'Welcome. Let me walk you through my journey.'] },
+  { id:'s1', img:'c1_audit', chap:'Chapter 01', h:'The Foundation', meta:E[3].org + ' · ' + E[3].period, p:E[3].summary, chips:['Audit','Assurance','Internal controls','Revenue recognition'], lines:[S.experience[3]] },
+  { id:'s2', img:'c2_strategy', chap:'Chapter 02', h:'The Strategist', meta:E[2].org + ' · ' + E[2].period, p:E[2].summary, chips:['FP&A','M&A','IPO readiness','40% less manual effort'], lines:[S.experience[2]] },
+  { id:'s3', img:'c3_deal', chap:'Chapter 03', h:'The Deal', meta:E[1].org + ' · ' + E[1].period, p:E[1].summary, chips:['US$456M NASDAQ SPAC','SEC readiness','25+ professionals led','IFRS · US GAAP'], lines:[S.experience[1]] },
+  { id:'s4', img:'c4_team', chap:'Chapter 04', h:'The Group', meta:E[0].org + ' · ' + E[0].period, p:E[0].summary, chips:['17 entities','Zoho ERP','MIS dashboards','Treasury'], lines:[S.experience[0]] },
+  { id:'s5', img:'c5_global', chap:'Chapter 05', h:'Three Geographies', meta:'India · United States · Middle East', p:'Planning, budgeting and reporting across 17 entities spanning three geographies.', chips:['India','United States','Middle East'], lines:[S.achievements[3]] },
+  { id:'s6', img:'c6_rooftop', chap:'Chapter 06', h:'Beyond the Numbers', meta:'People · Governance · Growth', p:R.leadership.map(l=>l.title).join(' · ') + '.', chips:R.leadership.map(l=>l.title), lines:[S.leadership_head] },
+];
+const film = document.getElementById('film'), dots = document.getElementById('dots');
+scenes.forEach((s, i) => {
+  const el = document.createElement('section');
+  el.className = 'scene' + (s.title ? ' title-card' : ''); el.id = s.id;
+  el.innerHTML = `<div class="stick"><div class="bg" style="background-image:url(assets/${s.img}.webp)"></div><div class="shade"></div>
+    <div class="copy"><div class="chap">${s.chap}</div><h2>${s.h}</h2>${s.role ? `<div class="role">${s.role}</div>` : ''}${s.meta ? `<div class="meta">${s.meta}</div>` : ''}
+    ${s.title ? '' : `<p>${s.p}</p>`}${s.chips ? `<div class="chips">${s.chips.map(c => `<span>${c}</span>`).join('')}</div>` : ''}</div></div>`;
+  film.appendChild(el);
+  const d = document.createElement('button'); d.setAttribute('aria-label', s.h); d.onclick = () => el.scrollIntoView({ behavior:'smooth' }); dots.appendChild(d);
+});
+// Credits
+document.getElementById('kpis').innerHTML = R.kpis.map((k, i) => `<div class="kpi" data-i="${i}"><b>${k.prefix}${k.value}${k.suffix}</b><span>${k.label}</span><small>${k.note}</small></div>`).join('');
+document.querySelectorAll('.kpi').forEach(k => k.onclick = () => say([S.kpis[+k.dataset.i]]));
+document.getElementById('roles').innerHTML = E.map(e => `<li>${e.role}<small>${e.org} · ${e.period}</small></li>`).join('');
+document.getElementById('work').innerHTML = R.achievements.slice(0, 5).map(a => `<li>${a.title}<small>${a.where}</small></li>`).join('');
+document.getElementById('edu').innerHTML = R.education.map(e => `<li>${e.title}<small>${e.org} · ${e.year}</small></li>`).join('');
+const P = R.profile;
+document.getElementById('cta').innerHTML = `<a class="primary" href="mailto:${P.email}">Email Ravi</a><a href="tel:${P.phoneHref}">Call</a><a href="${P.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${P.resume}" download>Download resume</a>`;
+
+// Narration
+let sound = false, active = -1, queueToken = 0;
+const cap = document.getElementById('cap'), sndBtn = document.getElementById('snd');
+function say(lines) {
+  const token = ++queueToken; let i = 0;
+  const next = () => {
+    if (token !== queueToken) return;
+    if (i >= lines.length) { cap.classList.remove('on'); return; }
+    const t = lines[i++]; cap.textContent = t; cap.classList.add('on');
+    if (sound) Voice.speak(t, next); else setTimeout(next, Math.max(2600, t.length * 60));
+  };
+  Voice.stop(); next();
+}
+function setSound(on) { sound = on; sndBtn.textContent = on ? 'Sound on' : 'Sound off'; sndBtn.setAttribute('aria-pressed', on); if (!on) Voice.stop(); }
+sndBtn.onclick = () => { setSound(!sound); if (sound && active >= 0) say(scenes[active].lines); };
+function start(withSound) {
+  setSound(withSound);
+  document.getElementById('open').classList.add('gone');
+  setTimeout(() => { document.getElementById('open').remove(); }, 1300);
+  active = -1; check();
+}
+document.getElementById('play').onclick = () => start(true);
+document.getElementById('silent').onclick = () => start(false);
+
+// Scroll: parallax zoom per scene, chapter detection
+const els = [...document.querySelectorAll('.scene')], counter = document.getElementById('counter');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function check() {
+  const vh = innerHeight; let best = -1;
+  els.forEach((el, i) => {
+    const r = el.getBoundingClientRect();
+    const prog = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
+    if (!reduce) el.querySelector('.bg').style.transform = `scale(${1.12 - prog * 0.1}) translateX(${(prog - .5) * -2}%)`;
+    if (r.top < vh * 0.5 && r.bottom > vh * 0.5) best = i;
+  });
+  els.forEach((el, i) => el.classList.toggle('in', i === best));
+  [...dots.children].forEach((d, i) => d.classList.toggle('on', i === best));
+  if (best !== active) {
+    active = best;
+    counter.textContent = best >= 0 ? (best === 0 ? 'Opening' : `Chapter 0${best} of 06`) : 'Credits';
+    if (best >= 0 && !document.getElementById('open')) say(scenes[best].lines); else if (best < 0) { Voice.stop(); cap.classList.remove('on'); }
+  }
+  document.getElementById('scroll').style.opacity = best === scenes.length - 1 || best < 0 ? 0 : 1;
+}
+addEventListener('scroll', () => requestAnimationFrame(check), { passive:true });
+addEventListener('resize', check);
+check();
+</script>
+</body>
+</html>
