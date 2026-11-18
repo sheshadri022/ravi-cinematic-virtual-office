@@ -151,7 +151,7 @@ const P = R.profile;
 document.getElementById('cta').innerHTML = `<a class="primary" href="mailto:${P.email}">Email Ravi</a><a href="tel:${P.phoneHref}">Call</a><a href="${P.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${P.resume}" download>Download resume</a>`;
 
 // Narration
-let sound = false, active = -1, queueToken = 0;
+let sound = false, active = -1, queueToken = 0, started = false;
 const cap = document.getElementById('cap'), sndBtn = document.getElementById('snd');
 function say(lines) {
   const token = ++queueToken; let i = 0;
@@ -166,7 +166,7 @@ function say(lines) {
 function setSound(on) { sound = on; sndBtn.textContent = on ? 'Sound on' : 'Sound off'; sndBtn.setAttribute('aria-pressed', on); if (!on) Voice.stop(); }
 sndBtn.onclick = () => { setSound(!sound); if (sound && active >= 0) say(scenes[active].lines); };
 function start(withSound) {
-  setSound(withSound);
+  setSound(withSound); started = true;
   document.getElementById('open').classList.add('gone');
   setTimeout(() => { document.getElementById('open').remove(); }, 1300);
   active = -1; check();
@@ -190,7 +190,7 @@ function check() {
   if (best !== active) {
     active = best;
     counter.textContent = best >= 0 ? (best === 0 ? 'Opening' : `Chapter 0${best} of 06`) : 'Credits';
-    if (best >= 0 && !document.getElementById('open')) say(scenes[best].lines); else if (best < 0) { Voice.stop(); cap.classList.remove('on'); }
+    if (best >= 0 && started) say(scenes[best].lines); else if (best < 0) { Voice.stop(); cap.classList.remove('on'); }
   }
   document.getElementById('scroll').style.opacity = best === scenes.length - 1 || best < 0 ? 0 : 1;
 }
